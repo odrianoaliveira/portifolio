@@ -1,4 +1,4 @@
-# 🧠 Adriano Oliveira – Distributed Systems Portfolio
+# 🧠 Adriano S. de Oliveira – Distributed Systems Portfolio
 
 Welcome to my technical portfolio. Here, you'll find showcase projects, benchmarks, technical writings, and architecture artifacts aligned with my specialization in **low-latency distributed systems**.
 
