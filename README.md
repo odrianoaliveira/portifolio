@@ -13,7 +13,7 @@ Each folder contains a focused topic that reflects the real-world design and ope
 - [`low-latency-ledger`](./low-latency-ledger): CQRS + Kafka-based ledger architecture in Kotlin
 
 ## 📚 Blog
-Posts documenting lessons learned, benchmarks, and system design insights.
+[Blog](./blog/): techincal article, lessons learned, benchmarks, system design, architecutre decisions, etc.
 
 ---
 > Let's connect: [LinkedIn](https://www.linkedin.com/in/adriano-oliveira/)
