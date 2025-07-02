@@ -6,11 +6,11 @@
 
    
 ## <a name="PRD"></a> Product Requirements Document 
-Product Name: Ledger Service (LS)
-Author: João Batista
-Technical Lead: Adriano Silva de Oliveira
-Version: 1.0
-Last Updated: 2025-06-30
+Product Name: Ledger Service (LS)  
+Author: João Batista  
+Technical Lead: Adriano Silva de Oliveira  
+Version: 1.0  
+Last Updated: 2025-06-30  
 
 ### Purpose
 The goal of this product is to design and build a low-latency, immutable ledger service capable of processing millions of financial transactions per day. The system must serve as a system of record for transactional data, offering high throughput and low P99 latency (<100 ms) while supporting integration with multiple domains across the company, including reconciliation, fraud detection, accounting, and compliance.
