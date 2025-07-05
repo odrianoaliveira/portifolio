@@ -36,10 +36,10 @@ Out of Scope:
 ### 🧪 Functional Requirements
 | ID  | Requirement                                                                                            |
 | --- | ------------------------------------------------------------------------------------------------------ |
-| FR1 | The system must accept credit and debit transactions via API or event stream.                          |
+| FR1 | The system must accept credit and debit transactions via API                                           |
 | FR2 | Each transaction must be persisted immutably and include metadata (timestamp, source, correlation ID). |
 | FR3 | The system must support querying balances per account with strong read consistency.                    |
-| FR4 | The service must reject or deduplicate transactions with identical idempotency keys.                   |
+| FR4 | The service must deduplicate transactions with identical idempotency keys.                             |
 | FR5 | A write must be acknowledged only after being durably persisted.                                       |
 | FR6 | The system must expose an event stream (Kafka topic) of confirmed ledger entries.                      |
 
@@ -79,3 +79,32 @@ Is ordering guaranteed globally or only per account?
 ## <a name="system-design"></a>  System Design
 
 WIP
+
+## Decisions
+### L4 or L7 Load Balancer
+#### Key Considerations
+1. Internal traffic, controlled environment. It won't be exposed to the internet.
+2. Need to distribute traffic across multiple API Gateway replicas.
+3. Low-latency is required, it should add minimal overhead.
+4. The API Gateway will handle the SSL at the HTTPS protocol
+#### L4 Load Balancer
+- Offer maximum performance at a minimum overhead
+- Balance the load at TCP connections (port-base, no deep inspection)
+##### Pros
+- Very low latency
+- Simple
+- Less CPU-intensive
+##### Cons
+- No insights into HTTP traffic for smart routing
+#### L7 Load Balancer
+- Can do health checks based on HTTP status code
+- Can route based on HTTP attributes
+- Can handle SSL termination at the LB level to offload the API Gateways
+##### Pros
+- Better control over HTTP traffic
+- Can improve fault tolerance with smart health checks
+##### Cons
+- Slightly high latency due to HTTP packet inspection and processing
+- More complex
+#### Recommendation
+Start with an L4 load balancer for the best latency and simplicity.
