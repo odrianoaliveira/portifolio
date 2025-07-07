@@ -1,11 +1,11 @@
-# 🧠 Adriano S. de Oliveira – Distributed Systems Portfolio
+# 🧠 Portfolio
 
 Welcome to my technical portfolio.
-Here, you'll find showcase projects, benchmarks, technical writings, and architecture artifacts aligned with my specialization in **low-latency distributed systems**.
+Here, you'll find showcase projects, benchmarks, technical writings, and architecture artifacts aligned with my background.
 
-This portfolio demonstrates my work as a Staff-level Backend Engineer with deep expertise in:
-- Event-driven architecture (Kafka, CQRS)
-- High-throughput, low-latency microservices (gRPC, Kotlin, Go)
+This portfolio demonstrates my work as a Software Engineer with deep expertise in:
+- Event-driven architecture
+- High-throughput, low-latency services (gRPC, Java, Kotlin, Go)
 - Observability and SLO engineering (P99, tracing, OpenTelemetry)
 
 Each folder contains a focused topic that reflects the real-world design and operation of distributed systems.
