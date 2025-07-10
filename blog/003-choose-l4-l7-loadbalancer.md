@@ -1,0 +1,11 @@
+# System Design decision: Choose between L4 and L7 Load Balancer
+
+As part of designing a low-latency system exercise, I’m revisiting my knowledge of sound system design fundamentals, specifically load-balancing strategies for a service that exposes gRPC APIs.
+
+Initially, an L4 load balancer caught my attention due to its simplicity and raw performance. Operating purely at the TCP layer, it promised minimal overhead by routing connections without introspecting application-level details. The streaming nature of TCP means that gRPC calls are multiplexed over a single connection, which seems elegant and efficient at first glance.
+
+As I wanted to go deeper into this topic, I decided to write an L4 load balancer in Go. I needed to refresh my understanding of how the TCP protocol works. During my research, I discovered that TCP is a streaming protocol, which means my proxy should behave as a bi-directional streaming service as well, acting as a proxy between the upstream and downstream services. How could I evenly distribute gRPC calls between multiple backends? I faced the limitation of this technique: an L4 load balancing distributes traffic per TCP connection, not per individual gRPC request. This means that if a client opens one connection and floods it with many requests, all those requests land on the same backend.
+
+Given these characteristics, for my use case, where evenly distributing gRPC calls across multiple backends is crucial, I concluded that an L7 load balancer is the more appropriate choice. Despite the additional processing cost of HTTP packet introspection and parsing, L7 load balancers can distribute requests with finer granularity per RPC call rather than per connection.
+
+These exercises reinforced the importance of critical thinking, starting with a high-level architecture design, evaluating components based on their external behavior, making trade-offs and assumptions, and validating these assumptions afterward while also examining how these components function internally. It’s been an insightful reminder for me that good system design often strikes a balance between theory and practical trade-offs tailored to your application’s unique requirements.
